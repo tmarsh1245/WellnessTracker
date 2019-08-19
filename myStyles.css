@@ -1,0 +1,41 @@
+header {
+    background-color: darkgreen;
+    height: 80px;
+    width: 100%;
+}
+header h1 {
+    font-size: 48px;
+    color: #ffffff;
+    padding: 10px;
+}
+h1{
+    color: white;
+    background-color: darkgreen;
+}
+table, th, td{
+    border: solid forestgreen;
+    border-collapse: collapse;
+}
+table{
+    width: 100%;
+    height: 50%;
+}
+th{
+    text-align: center;
+    font-size: 24px;
+    color: white;
+    background-color: darkgreen;
+}
+th, td{
+    padding: 10px;
+}
+h3{
+    color: darkgreen;
+}
+button{
+    color: white;
+    background-color: forestgreen;
+}
+footer{
+    height: 100px;
+}

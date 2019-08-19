@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wellness Tracker</title>
+    <link rel="stylesheet" href="myStyles.css">
+    <script src="index.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Wellness Tracker</h1>
+    </header>
+    <h3>Be the Detective of your own Body</h3>
+    <table id="WellnessTable">
+        <tr>
+            <th>Date</th>
+            <th>Overall</th>
+            <th>Food</th>
+            <th>Activity</th>
+            <th>Meds Morning</th>
+            <th>Meds Evening</th>
+            <th>Diet Notes</th>
+            <th>Movement Notes</th>
+        </tr>
+    </table>
+<br>
+    <button onclick="loadTable()">Load your Log</button>
+<form name="myForm", id="newLogForm">
+    <h3>Add a New Day</h3>
+    Date:<br>
+    <input type="date", name="date"><br>
+    Overall Rating:<br>
+    <input type="number", name="overall", min="1", max="10"><br>
+    Food Rating:<br>
+    <input type="number", name="food", min="1", max="10"><br>
+    Activity Rating:<br>
+    <input type="number", name="activity", min="1", max="10"><br>
+    Meds Morning:<br>
+    <input type="radio" name="morning" value="yes" checked>Yes
+    <input type="radio" name="morning" value="no">No<br>
+    Meds Evening:<br>
+    <input type="radio" name="evening" value="yes" checked>Yes
+    <input type="radio" name="evening" value="no">No<br>
+    Notes:<br>
+    <textarea name="notes" rows="10" cols="60"></textarea><br>
+    <input type="submit" value="Submit" onclick="addRow()">
+    <input type="reset">
+</form>
+<br>
+</body>
+<footer>
+
+</footer>
+</html>
