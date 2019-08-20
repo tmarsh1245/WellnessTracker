@@ -1,0 +1,23 @@
+{
+  "name": "body-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmarsh1245/WellnessTracker.git"
+  },
+  "author": "Tanner  J. Marsh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tmarsh1245/WellnessTracker/issues"
+  },
+  "homepage": "https://github.com/tmarsh1245/WellnessTracker#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.3.0"
+  }
+}
