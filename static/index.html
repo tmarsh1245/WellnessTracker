@@ -28,7 +28,7 @@
     </table>
 <br>
     <button onclick="loadTable()">Load your Log</button>
-<form name="myForm", id="newLogForm">
+<form action="/newLog" method ="POST">
     <h3>Add a New Day</h3>
     Date:<br>
     <input type="date", name="date"><br>
@@ -44,9 +44,17 @@
     Meds Evening:<br>
     <input type="radio" name="evening" value="yes" checked>Yes
     <input type="radio" name="evening" value="no">No<br>
-    Notes:<br>
-    <textarea name="notes" rows="10" cols="60"></textarea><br>
-    <input type="submit" value="Submit" onclick="addRow()">
+    Breakfast:<br>
+    <textarea name="breakfast" rows="2" cols="60"></textarea><br>
+    Lunch:<br>
+    <textarea name="lunch" rows="2" cols="60"></textarea><br>
+    Dinner:<br>
+    <textarea name="dinner" rows="2" cols="60"></textarea><br>
+    Exercise:<br>
+    <textarea name="exercise" rows="2" cols="60"></textarea><br>
+    Workshift:<br>
+    <input type="time" name="timeFrom" value="12:00"> to <input type="time" name="timeTo" value="12:00"><br>
+    <input type="submit" value="Submit">
     <input type="reset">
 </form>
 <br>
