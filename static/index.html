@@ -3,61 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Wellness Tracker</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.13.0/polyfill.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="myStyles.css">
-    <script src="index.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Wellness Tracker</h1>
-    </header>
-    <h3>Be the Detective of your own Body</h3>
-    <table id="WellnessTable">
-        <tr>
-            <th>Date</th>
-            <th>Overall</th>
-            <th>Food</th>
-            <th>Activity</th>
-            <th>Meds Morning</th>
-            <th>Meds Evening</th>
-            <th>Breakfast</th>
-            <th>Lunch</th>
-            <th>Dinner</th>
-            <th>Exercise</th>
-            <th>Work Shift</th>
-        </tr>
-    </table>
+    
+    <div class="container">
+        <div className="container-fluid">
+            <div id="header"></div>
+            <div id="logs"></div>
+        </div>
+    <div class="row">
+            <form action="/newLog" method ="POST">
+                <br>
+                <h3>Add a New Day</h3>
+                <div class="form-row">
+                    <div class="form col-6">
+                            Date:<br>
+                            <input type="date", name="date"><br>
+                            Overall Rating:<br>
+                            <input type="number", name="overall", min="1", max="10"><br>
+                            Food Rating:<br>
+                            <input type="number", name="food", min="1", max="10"><br>
+                            Activity Rating:<br>
+                            <input type="number", name="activity", min="1", max="10"><br>
+                            Meds Morning:<br>
+                            <input type="radio" name="morning" value="yes" checked>Yes
+                            <input type="radio" name="morning" value="no">No<br>
+                            Meds Evening:<br>
+                            <input type="radio" name="evening" value="yes" checked>Yes
+                            <input type="radio" name="evening" value="no">No<br>
+                            Workshift:<br>
+                            <input type="time" name="timeFrom" value="12:00"> to <input type="time" name="timeTo" value="12:00"><br>
+                            <input type="submit" value="Submit">
+                            <input type="reset">
+                    </div>
+                    <div class="form col-6">
+                            Breakfast:<br>
+                            <textarea name="breakfast" rows="2" cols="60"></textarea><br>
+                            Lunch:<br>
+                            <textarea name="lunch" rows="2" cols="60"></textarea><br>
+                            Dinner:<br>
+                            <textarea name="dinner" rows="2" cols="60"></textarea><br>
+                            Exercise:<br>
+                            <textarea name="exercise" rows="2" cols="60"></textarea><br>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <br>
-    <button onclick="loadTable()">Load your Log</button>
-<form action="/newLog" method ="POST">
-    <h3>Add a New Day</h3>
-    Date:<br>
-    <input type="date", name="date"><br>
-    Overall Rating:<br>
-    <input type="number", name="overall", min="1", max="10"><br>
-    Food Rating:<br>
-    <input type="number", name="food", min="1", max="10"><br>
-    Activity Rating:<br>
-    <input type="number", name="activity", min="1", max="10"><br>
-    Meds Morning:<br>
-    <input type="radio" name="morning" value="yes" checked>Yes
-    <input type="radio" name="morning" value="no">No<br>
-    Meds Evening:<br>
-    <input type="radio" name="evening" value="yes" checked>Yes
-    <input type="radio" name="evening" value="no">No<br>
-    Breakfast:<br>
-    <textarea name="breakfast" rows="2" cols="60"></textarea><br>
-    Lunch:<br>
-    <textarea name="lunch" rows="2" cols="60"></textarea><br>
-    Dinner:<br>
-    <textarea name="dinner" rows="2" cols="60"></textarea><br>
-    Exercise:<br>
-    <textarea name="exercise" rows="2" cols="60"></textarea><br>
-    Workshift:<br>
-    <input type="time" name="timeFrom" value="12:00"> to <input type="time" name="timeTo" value="12:00"><br>
-    <input type="submit" value="Submit">
-    <input type="reset">
-</form>
-<br>
+<script src="Header.js"></script>
+<script src="index.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" 
+integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" 
+crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" 
+integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" 
+crossorigin="anonymous"></script>
 </body>
 <footer>
 
