@@ -1,9 +1,9 @@
-var headerNode = document.getElementById("header");
+import React from 'react';
 
-class Header extends React.Component{
+export default class Header extends React.Component{
     render(){
         return(
-            <div className="container">
+            <div>
                 <div className="row">
                     <header>
                         <h1>Wellness Tracker</h1>
@@ -12,9 +12,9 @@ class Header extends React.Component{
                 <div className="row">
                     <h3>Be the Detective of your own Body</h3>
                 </div>
+                <br />
             </div>
         )
     }
 }
 
-ReactDOM.render(<Header/>, headerNode)

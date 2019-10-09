@@ -20,8 +20,8 @@ MongoClient.connect('mongodb://localhost', {useNewUrlParser: true}).then(connect
 }
 );
 
-app.post('/newLog', (req, res) => {
-    db.collection('allLogs').save(req.body), (err, result) => {
+app.post('/api/newLog', (req, res) => {
+    db.collection('allLogs').insertOne(req.body), (err, result) => {
         if(err) return console.log(err)
         console.log('saved to logs')
         res.redirect('/')
