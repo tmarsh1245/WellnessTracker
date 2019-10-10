@@ -25,6 +25,7 @@ th{
     font-size: 24px;
     color: white;
     background-color: darkgreen;
+    width: 100px;
 }
 th, td{
     padding: 10px;

@@ -7,19 +7,40 @@ export class LogForm extends React.Component {
     }
 
     handleSubmit(event){
-        alert('A log was submitted');
         event.preventDefault();
-        const data = new FormData(event.target)
-        fetch(`api/newLog`,{
-            method: "POST",
-            body: data
+        let form = document.forms.logForm;
+        this.props.addLog({
+            date: form.date.value,
+            overall: form.overall.value,
+            food: form.food.value,
+            activity: form.activity.value,
+            morning: form.morning.value,
+            evening: form.evening.value,
+            timeFrom: form.timeFrom.value,
+            timeTo: form.timeTo.value,
+            breakfast: form.breakfast.value,
+            lunch: form.breakfast.value,
+            dinner: form.dinner.value,
+            exercise: form.exercise.value
         });
+        form.date.value = '';
+        form.overall.value = '';
+        form.food.value = '';
+        form.activity.value ='';
+        form.morning.value = 'yes';
+        form.evening.value = 'yes';
+        form.timeFrom.value = "12:00";
+        form.timeTo.value = '12:00';
+        form.breakfast.value = '';
+        form.lunch.value = '';
+        form.dinner.value = '';
+        form.exercise.value = '';
     }
 
     render(){
         return(
             <div className="row">
-                <form action="/api/newLog" method="POST">
+                <form name="logForm" onSubmit={this.handleSubmit}>
                     <br/>
                     <h3>Add a New Day</h3>
                     <div className="form-row">
@@ -33,15 +54,14 @@ export class LogForm extends React.Component {
                                 Activity Rating:<br/>
                                 <input type="number" name="activity" min="1" max="10"/><br/>
                                 Meds Morning:<br/>
-                                <input type="radio" name="morning" checked/>Yes
-                                <input type="radio" name="morning"/>No<br/>
+                                <input type="radio" name="morning" value="yes" checked/>Yes
+                                <input type="radio" name="morning" value="no" />No<br/>
                                 Meds Evening:<br/>
                                 <input type="radio" name="evening" value="yes" checked/>Yes
                                 <input type="radio" name="evening" value="no"/>No<br/>
                                 Workshift:<br/>
                                 <input type="time" name="timeFrom" value="12:00"/> to <input type="time" name="timeTo" value="12:00"/><br/>
-                                <input type="submit" value="Submit" onClick = {this.handleSubmit}/>
-                                <input type="reset"/>
+                                <button>Add Log</button>
                         </div>
                         <div className="form col-6">
                                Breakfast:<br/>

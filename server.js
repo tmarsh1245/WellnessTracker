@@ -20,13 +20,18 @@ MongoClient.connect('mongodb://localhost', {useNewUrlParser: true}).then(connect
 }
 );
 
-app.post('/api/newLog', (req, res) => {
-    db.collection('allLogs').insertOne(req.body), (err, result) => {
-        if(err) return console.log(err)
-        console.log('saved to logs')
-        res.redirect('/')
+app.post('/api/logs', (req, res) => {
+    const newLog = req.body;
+
+    db.collection('allLogs').insertOne(newLog).then(result =>
+        db.collection('allLogs').find({_date: result.insertedDate}).limit(1).next()
+        ).then(newLog =>{
+            res.json(newLog);
+        }).catch(error =>{
+            console.log(error);
+        });
     }
-});
+);
 
 app.get('/api/logs', (req, res) => {
     db.collection('allLogs').find().toArray((err, allLogs) => {
