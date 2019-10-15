@@ -6,12 +6,13 @@ import {LogsTable} from './LogsTable.jsx';
 import {LogDisplay} from './LogDisplay.jsx';
 
 export default class Logs extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state ={
             logs: [],
             filteredLogs: [],
             mostRecentLog: '',
+            selectedLog: '',
             numberOfLogs: 7
         };
         this.addLog = this.addLog.bind(this);
@@ -33,8 +34,7 @@ export default class Logs extends React.Component {
                 if(response.ok){
                     response.json().then(data => {
                         this.setState({logs: data.records});
-                        this.setState({mostRecentLog: this.state.logs[this.state.logs.length - 1]});
-                        console.log(this.state.logs);
+                        this.setState({mostRecentLog: this.state.logs[0]});
                     });
                 }
                 else{
@@ -55,7 +55,7 @@ export default class Logs extends React.Component {
         }).then(res => {
             if(res.ok){
                 res.json().then(updatedLog => {
-                    const updatedLogs = this.state.logs.concat(updatedLog);
+                    const updatedLogs = this.state.logs.push(updatedLog);
                     this.setState({ logs: updatedLogs });
                 });
             }
@@ -68,13 +68,19 @@ export default class Logs extends React.Component {
     }
 
     filterLogs() {
+        let unsortedLogs = this.state.logs;
+        console.log(typeof unsortedLogs);
+        let sortedLogs = unsortedLogs.sort(function(a,b){
+            return new Date(b.date) - new Date(a.date);
+        });
         if(this.state.numberOfLogs == 7){
-            let end = this.state.logs.length;
-            let begin = end - 7;
-            this.state.filteredLogs = this.state.logs.slice(begin, end);
+            this.state.filteredLogs = sortedLogs.slice(0, 7);
         }
         else{
-            this.state.filteredLogs = this.state.logs;
+            this.state.filteredLogs = sortedLogs;
+        }
+        if(this.state.selectedLog === ''){
+            this.state.selectedLog = this.state.mostRecentLog;
         }
     }
 

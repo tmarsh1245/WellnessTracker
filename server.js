@@ -34,9 +34,10 @@ app.post('/api/logs', (req, res) => {
 );
 
 app.get('/api/logs', (req, res) => {
-    db.collection('allLogs').find().toArray((err, allLogs) => {
-        if(err) return console.log(err);
-        const rowsOfLogs = {totalLogs: allLogs.length};
-        res.json({_rowsOfLogs: rowsOfLogs, records: allLogs})
+    db.collection('allLogs').find().toArray().then(allLogs => {
+        const metadata = {total_count: allLogs.length};
+        res.json({_metadata: metadata, records: allLogs})
+    }).catch(error => {
+        console.log(error);
     })
 })

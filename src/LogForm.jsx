@@ -19,7 +19,7 @@ export class LogForm extends React.Component {
             timeFrom: form.timeFrom.value,
             timeTo: form.timeTo.value,
             breakfast: form.breakfast.value,
-            lunch: form.breakfast.value,
+            lunch: form.lunch.value,
             dinner: form.dinner.value,
             exercise: form.exercise.value
         });
