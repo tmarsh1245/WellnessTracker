@@ -1,7 +1,8 @@
 header {
-    background-color: darkgreen;
+    background-color: rgb(45, 150, 45);
     height: 80px;
     width: 100%;
+    border-color: rgb(20, 82, 20);
 }
 header h1 {
     font-size: 48px;
@@ -10,10 +11,9 @@ header h1 {
 }
 h1{
     color: white;
-    background-color: darkgreen;
 }
 table, th, td{
-    border: solid forestgreen;
+    border: solid rgb(20, 82, 20);
     border-collapse: collapse;
 }
 table{
@@ -24,27 +24,81 @@ th{
     text-align: center;
     font-size: 24px;
     color: white;
-    background-color: darkgreen;
+    background-color: rgb(45, 150, 45);
     width: 100px;
 }
 th, td{
     padding: 10px;
 }
+
 h3{
     color: darkgreen;
 }
+
+#h32{
+    color: white;
+}
+
+h4{
+    color: #ffffff;
+}
+
+hr{
+    border: 1px solid rgb(45, 150, 45);
+}
+
 button{
     color: white;
-    background-color: forestgreen;
+    background-color: rgb(45, 150, 45);
+    border: solid rgb(20, 82, 20);
 }
 footer{
     height: 100px;
 }
 
 .text-primary{
-    color: forestgreen;
+    color:  white;
 }
 
 .btn-primary{
-    background-color: darkgreen;
+    background-color:  rgb(45, 150, 45);
+    position: absolute;
+    vertical-align: bottom;
+}
+
+.btn-secondary{
+    background-color: rgb(20, 82, 20);
+    color: white;
+    border: rgb(20, 82, 20);
+    text-align: center;
+}
+
+.btn-secondary:hover{
+    background-color: rgb(66, 129, 223);
+}
+
+.navbar-primary{
+    color: rgb(45, 150, 45);
+}
+
+.card-header{
+    background-color: rgb(20, 82, 20);
+    text-align: center;
+}
+.card-body{
+    width: 22rem;
+    background-color: rgb(45, 150, 45);
+    color: #ffffff;
+}
+
+.card-title{
+    background-color: rgb(20, 82, 20);
+}
+
+#nextButton{
+    right: 0;
+}
+
+#logDisplay{
+    height: 600px;
 }

@@ -10,6 +10,13 @@ app.use(express.static('static'));
 
 let db;
 
+const logField = {
+    date: 'required',
+    overall: 'required',
+    food: 'required',
+    activity: 'required'
+};
+
 MongoClient.connect('mongodb://localhost', {useNewUrlParser: true}).then(connection => {
     db = connection.db('wellnessTracker');
     app.listen(3000, () =>{
@@ -34,10 +41,14 @@ app.post('/api/logs', (req, res) => {
 );
 
 app.get('/api/logs', (req, res) => {
-    db.collection('allLogs').find().toArray().then(allLogs => {
+    const filter = {};
+    if(req.query.date){
+        filter.date = req.query.date;
+    }
+    db.collection('allLogs').find(filter).toArray().then(allLogs => {
         const metadata = {total_count: allLogs.length};
         res.json({_metadata: metadata, records: allLogs})
     }).catch(error => {
         console.log(error);
-    })
-})
+    });
+});

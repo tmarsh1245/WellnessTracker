@@ -4,24 +4,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export class LogDisplay extends React.Component {
     constructor(props){
         super(props);
+        this.handlePrev = this.handlePrev.bind(this);
+        this.handleNext = this.handleNext.bind(this);
     }
+
+    handlePrev() {
+        this.props.prevLog();
+    }
+
+    handleNext() {
+        this.props.nextLog();
+    }
+
     render(){
-        let selectedLog = this.props.mostRecentLog;
+        let selectedLog = this.props.selectedLog;
+        
         return(
             <div>
                 <h3 className="healthDisplayTitle">Health Report: {selectedLog.date}</h3>
-                <br/>
                 <h5>How you felt: {starGenerator(selectedLog.overall)}</h5>
                 <p>Morning Medication: {medsIconGenerator(selectedLog.morning)} Evening Medication: {medsIconGenerator(selectedLog.evening)}</p>
                 <h5>How you ate: {starGenerator(selectedLog.food)}</h5>
-                <p>Breakfast: {selectedLog.breakfast} Lunch: {selectedLog.lunch} Dinner: {selectedLog.dinner}</p>
-                <h5>How active: {starGenerator(selectedLog.activity)}</h5>
+                <p>Breakfast: {selectedLog.breakfast} <br/>Lunch: {selectedLog.lunch} <br/>Dinner: {selectedLog.dinner}</p>
+                <h5>How you moved: {starGenerator(selectedLog.activity)}</h5>
                 <p>{workTranslate(selectedLog.timeFrom, selectedLog.timeTo)}</p>
                 <p>Activity done: {selectedLog.exercise}</p>
-                <div className="btn-group">
-                    <button className="btn btn-primary" type="button">Previous</button>
-                    <button className="btn btn-primary" type="button">Next</button>
-                </div>
+                <button className="btn btn-primary" type="button" onClick={this.handlePrev}><FontAwesomeIcon icon="arrow-alt-circle-left"/> Previous</button>
+                <button className="btn btn-primary" id="nextButton" type="button" onClick={this.handleNext}>Next <FontAwesomeIcon icon="arrow-alt-circle-right"/></button>
             </div>
         )
     }

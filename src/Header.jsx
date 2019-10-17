@@ -3,7 +3,7 @@ import React from 'react';
 export default class Header extends React.Component{
     render(){
         return(
-            <div className="container-fluid">
+            <div>
                 <div className="row">
                     <header>
                         <h1>Wellness Tracker</h1>

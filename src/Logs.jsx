@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router';
 import Header from './Header.jsx';
 import {LogForm} from './LogForm.jsx';
 import {LogsTable} from './LogsTable.jsx';
@@ -16,6 +15,9 @@ export default class Logs extends React.Component {
             numberOfLogs: 7
         };
         this.addLog = this.addLog.bind(this);
+        this.filterLogs = this.filterLogs.bind(this);
+        this.nextLog = this.nextLog.bind(this);
+        this.prevLog = this.prevLog.bind(this);
     }
     componentDidMount(){
         this.loadTable();
@@ -33,6 +35,7 @@ export default class Logs extends React.Component {
         fetch(`/api/logs`).then(response => {
                 if(response.ok){
                     response.json().then(data => {
+                        //console.log(typeof data.records);
                         this.setState({logs: data.records});
                         this.setState({mostRecentLog: this.state.logs[0]});
                     });
@@ -47,7 +50,7 @@ export default class Logs extends React.Component {
     }
 
     addLog(newLog) {
-        console.log(newLog + "being added");
+        //console.log(newLog + "being added");
         fetch('/api/logs', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -55,8 +58,10 @@ export default class Logs extends React.Component {
         }).then(res => {
             if(res.ok){
                 res.json().then(updatedLog => {
-                    const updatedLogs = this.state.logs.push(updatedLog);
+                    console.log(typeof this.state.logs + " logs");
+                    const updatedLogs = this.state.logs.concat(updatedLog);
                     this.setState({ logs: updatedLogs });
+                    console.log(typeof this.state.logs + " logs after");
                 });
             }
             else{
@@ -69,7 +74,6 @@ export default class Logs extends React.Component {
 
     filterLogs() {
         let unsortedLogs = this.state.logs;
-        console.log(typeof unsortedLogs);
         let sortedLogs = unsortedLogs.sort(function(a,b){
             return new Date(b.date) - new Date(a.date);
         });
@@ -84,6 +88,27 @@ export default class Logs extends React.Component {
         }
     }
 
+    nextLog() {
+        let curIndex = this.state.filteredLogs.indexOf(this.state.selectedLog);
+        if(curIndex === 0){
+            return;
+        }
+        else{
+            this.setState({selectedLog: this.state.filteredLogs[curIndex - 1]});
+        }
+    }
+
+    prevLog() {
+        let curIndex = this.state.filteredLogs.indexOf(this.state.selectedLog);
+        if(curIndex === this.state.filteredLogs.length - 1){
+            return;
+        }
+        else{
+            this.setState({selectedLog: this.state.filteredLogs[curIndex + 1]});
+        }
+    }
+
+
     render() {
         this.filterLogs();
         
@@ -95,12 +120,12 @@ export default class Logs extends React.Component {
                         <LogsTable logs={this.state.filteredLogs}/>
                     </div>
                     <div className="col">
-                        <LogDisplay mostRecentLog={this.state.mostRecentLog}/>
+                        <LogDisplay selectedLog={this.state.selectedLog} nextLog={this.nextLog} prevLog={this.prevLog}/>                 
                     </div>
                 </div>
-                <div className="row">
-                    <LogForm addLog={this.addLog}/>
-                </div>
+                <br/>
+                <hr/>
+                <LogForm addLog={this.addLog}/>
             </div>
         );
     }
